@@ -1,28 +1,29 @@
 
 def quicksort(sequenza):
-    if len(sequenza) == 1:
+    if len(sequenza) == 1:  # mi fermo quando la sequenza che passo per parametro ha solo 1 elemento
         return sequenza
     else:
-        #1) scegliere pivot
-        pivot = sequenza[0]
-        #2) dividere sequenza in sottosequenze
-        # sequenza_smaller = []
-        # sequenza_larger = []
-        # sequenza_pivot =[]
-        # for i in sequenza:
-        #     if(i<pivot):
-        #         sequenza_smaller.append(i)
-        #     elif (i>pivot):
-        #         sequenza_larger.append(i)
-        #     else:
-        #         sequenza_pivot.append(i)
+        # 1) scegliere pivot
+        pivot = sequenza[0]  # prendo quello in prima posizione --> non troppo furbo perchè se è un numero molto grande o molto piccolo avrò le due sottoliste sbilanciate
 
-        sequenza_smaller = [n for n in sequenza if n < pivot]
-        sequenza_larger = [n for n in sequenza if n > pivot]
-        sequenza_pivot = [n for n in sequenza if n == pivot]
-        return (quicksort(sequenza_smaller)+
-                sequenza_pivot+
-                quicksort(sequenza_larger))
+        # 2) dividere sequenza in sottosequenze
+        sequenza_smaller = []
+        sequenza_larger = []
+        sequenza_pivot =[]
+        for i in sequenza:
+            if i < pivot:
+                sequenza_smaller.append(i)
+            elif i > pivot:
+                sequenza_larger.append(i)
+            else:
+                sequenza_pivot.append(i)
+
+        # modo più compatto per scrivere
+        # sequenza_smaller = [n for n in sequenza if n < pivot]
+        # sequenza_larger = [n for n in sequenza if n > pivot]
+        # sequenza_pivot = [n for n in sequenza if n == pivot]
+
+        return quicksort(sequenza_smaller) + sequenza_pivot + quicksort(sequenza_larger)
 
 
 if __name__ == '__main__':
